@@ -25,6 +25,43 @@ fn main() {
     // Criação da variável novo_nome usando shadowing
     let novo_nome = String::from("Lucas Shadow");
     println!("Meu novo nome sombrio é {}", novo_nome);
+
+    // Trabalhando com arrays
+    let numeros_original: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("Números: {:?}", numeros_original);
+
+    // Clonando o array
+    let mut numeros_clone = numeros_original;
+    /*
+      Em Rust, arrays de tamanho fixo (até 32 elementos) cujos elementos implementam o trait Copy
+      também implementam Copy. Nesse caso, atribuir o array a uma nova variável faz uma cópia automática.
+
+      Portanto, não é necessário usar o método clone() para copiar arrays simples como [i32; N].
+
+      No entanto, se o array contiver tipos que não implementam Copy (como String), a atribuição moverá os dados,
+      e será necessário usar o método clone() para criar uma cópia real.
+
+    */
+    println!("Números clonados: {:?}", numeros_clone);
+
+    // Modificando o array clonado
+    numeros_clone[0] = 10;
+    println!("Números clonados após modificação: {:?}", numeros_clone);
+
+    // O valor do array original permanece inalterado pois trabalhamos com uma cópia
+    println!(
+        "Números originais ainda são acessíveis: {:?}",
+        numeros_original
+    );
+
+    /*
+    Isso também se aplica a variáveis de tamanho fixo, como i32, que implementam Copy.
+    */
+
+    let x: i32 = 5;
+    let y: i32 = x; // Aqui, x é copiado para y, pois i32 implementa Copy
+
+    println!("Valor de x: {}, Valor de y: {}", x, y);
 }
 
 #[cfg(test)]
